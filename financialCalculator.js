@@ -22,8 +22,7 @@
  */
 
 // Import functions from this week's arrays homework.
-const { addUpArrayElements } = require('./src/arrays-03');
-
+const { addUpArrayElements } = require('./src/arrays-03.js');
 
 // Read command-line arguments (skipping "node" and the script path). Put the rest into an args array
 const args = process.argv.slice(2);
@@ -44,11 +43,29 @@ if (transactions.length === 0) {
 
 // TODO: Before creating the funFacts array, define the following variables:
 // - totalTransactions: Total number of transactions (use array length).
+let totalTransactions = transactions.length;
 // - totalSum: Sum of all transactions (use addUpArrayElements function).
+let i = 0;
+let array = [];
+do {
+  let numeral = Number(args[i]);
+  array.push(numeral);
+  i = i + 1;
+} while (i != args.length);
+
+let num = array.filter(item => !isNaN(item));
+
+let totalSum = addUpArrayElements(num);
 // - averageTransaction: Average transaction value (calculate using totalSum and totalTransactions).
+let averageTransaction = totalSum / totalTransactions;
 // - totalIncome: Sum of all positive transactions.
+let positive = num.filter(item => item > 0);
+let totalIncome = addUpArrayElements(positive);
 // - totalExpenses: Sum of all negative transactions.
+let negative = num.filter(item => item < 0);
+let totalExpenses = addUpArrayElements(negative);
 // - netBalance: Total of totalIncome and totalExpenses.
+let netBalance = totalIncome + totalExpenses;
 
 
 // Create an array of fun fact rows. Each row is a two-element array: [Fact, Value].
